@@ -14,16 +14,10 @@ public class JpaMain {
         EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();
         try{
-            List<Member> resultList = entityManager.createQuery("select m from Member as m", Member.class)
-                    .setFirstResult(1)
-                    .setMaxResults(10)
-                    .getResultList();
-            for (Member member : resultList) {
-                System.out.println("member = " + member.getName());
-            }
-            Member member = entityManager.find(Member.class, 1L);
-            member.setName("밥먹고싶다");
-            transaction.commit();
+            //영속
+            Member member= entityManager.find(Member.class, 1L);
+            member.setName("GalBae");
+
         } catch (Exception e){
             transaction.rollback();
         } finally{
